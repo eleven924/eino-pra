@@ -1,6 +1,6 @@
 package main
 
-// 通过 go-openai 模块完成一个简单的agent
+// 通过 go-openai 模块完成一个简单的agent，支持多轮对话
 // 用户输入来自标准输入
 // 模型结果返回到标准输出
 // 支持循环对话，将之前成功的内容追加到 msgs 列表中，下次对话会一并携带
@@ -30,7 +30,7 @@ func NewPraAgent() (*praAgent, error) {
 	}
 
 	cfg := openai.DefaultConfig(apiKey)
-	cfg.BaseURL = "https://api.deepseek.com"
+	cfg.BaseURL = config.DEEPSEEK_BASE_URL
 
 	client := openai.NewClientWithConfig(cfg)
 
