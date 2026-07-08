@@ -2,7 +2,6 @@ package lolhero
 
 import (
 	"context"
-	"errors"
 
 	"github.com/cloudwego/eino/components/tool"
 	"github.com/cloudwego/eino/components/tool/utils"
@@ -15,29 +14,34 @@ type HeroCombatPower struct {
 	Lines       string
 }
 
+type HeroCombatPowerResp struct {
+	Item      *HeroCombatPower
+	ErrorInfo string
+}
+
 type HeroCombatPowerReq struct {
 	Type string `json:"type" jsonschema:"required,enum=name,enum=combat-power,enum=country,enum=lines,description=查询英雄信息的维度，只限于名字（name）,属国（country）,台词（lines）；如果传递台词进行contains匹配"`
 	Key  string `json:"key"  jsonschema:"required,description=要查询的关键字"`
 }
 
-func SearchHeroCombatPower(_ context.Context, req *HeroCombatPowerReq) (*HeroCombatPower, error) {
+func SearchHeroCombatPower(_ context.Context, req *HeroCombatPowerReq) (*HeroCombatPowerResp, error) {
 	for _, hero := range heroList {
 		switch req.Type {
 		case "name":
 			if hero.Name == req.Key {
-				return &hero, nil
+				return &HeroCombatPowerResp{Item: &hero}, nil
 			}
 		case "country":
 			if hero.Country == req.Key {
-				return &hero, nil
+				return &HeroCombatPowerResp{Item: &hero}, nil
 			}
 		case "lines":
 			if hero.Lines == req.Key {
-				return &hero, nil
+				return &HeroCombatPowerResp{Item: &hero}, nil
 			}
 		}
 	}
-	return nil, errors.New("hero combat not found")
+	return &HeroCombatPowerResp{ErrorInfo: "hero combat not found"}, nil
 }
 
 var HeroCombatPowerTool tool.InvokableTool
