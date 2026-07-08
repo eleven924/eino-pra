@@ -4,4 +4,6 @@
 
 ## 目标
 
-实现一个加减乘除计算器，并封装成 eino 的 tool ，支持后续提供给大模型。
+1. 通过 util.NewTool 添加工具定义以及对应函数来创建工具
+2. 通过 utils.InferTool 来根据定义的函数以及其请求参数中的tag来创建工具
+3. 使用 ToolNode 来调用 LLM 返回的 ToolCalls 中的多个工具
