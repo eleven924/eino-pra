@@ -45,8 +45,8 @@ var HeroCombatPowerTool tool.InvokableTool
 func init() {
 	var err error
 	HeroCombatPowerTool, err = utils.InferTool(
-		"search hero combit",
-		"根据英雄信息查询英雄战力，适用于问题中带有关键字 'LoL','战力' 时，不适用于其他情况",
+		"search-hero-combit",
+		"根据英雄 名称，国家，台词 查询英雄战力，适用于问题中带有关键字 'LoL','战力' 时，不适用于其他情况",
 		SearchHeroCombatPower,
 	)
 	if err != nil {

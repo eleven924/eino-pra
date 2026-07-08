@@ -57,7 +57,7 @@ func init() {
 	CalculatorTool = utils.NewTool(
 		// NewTool 第一个参数是 ToolInfo 负责定义tool的描述和参数，类似元数据
 		&schema.ToolInfo{
-			Name: "two number calculator",
+			Name: "two-number-calculator",
 			Desc: "一个计算器，适用：两个数字之间的加、减、乘、除运算，不适用：复杂计算、多参数计算、大数据计算; example: param_a=1,param_b=2,op=add",
 			ParamsOneOf: schema.NewParamsOneOfByParams(
 				map[string]*schema.ParameterInfo{
