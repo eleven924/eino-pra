@@ -1,5 +1,8 @@
 package lolhero
 
+// 允许外部调用
+var HeroCombatPowerList = heroList
+
 var heroList = []HeroCombatPower{
 	{
 		Name:        "盖伦",
